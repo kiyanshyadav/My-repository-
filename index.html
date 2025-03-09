@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kriti Gupta - Fun Zone</title>
+    <style>
+        body {
+            background-color: #ffcc00;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .header {
+            background-color: #ff5733;
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            text-shadow: 2px 2px black;
+        }
+        .kriti-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin-top: 20px;
+        }
+        .meme-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .meme {
+            width: 150px;
+            height: 150px;
+            margin: 10px;
+            border-radius: 10px;
+            border: 3px solid black;
+        }
+        .chat-section {
+            margin-top: 30px;
+            background-color: #ff007f;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            text-shadow: 2px 2px black;
+        }
+        .chat-button {
+            background-color: #00ff00;
+            color: black;
+            font-size: 18px;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .chat-button:hover {
+            background-color: #008000;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        Welcome to Kriti Gupta's Brothel 🎉
+    </div>
+
+    <img src="https://ibb.co/BKzrwL0q" alt="Kriti Gupta" class="kriti-photo">
+
+    <div class="meme-gallery">
+        <img src="https://ibb.co/rfXJ9mxW" alt="Meme 1" class="meme">
+        <img src="https://ibb.co/nNFj4f0g" alt="Meme 2" class="meme">
+        <img src="https://ibb.co/5hwLB47c" alt="Meme 3" class="meme">
+        <img src="https://ibb.co/7xYF5wW3" alt="Meme 4" class="meme">
+    </div>
+
+    <div class="chat-section">
+        Wanna talk to this bitch? 😉
+        <br>
+        <button class="chat-button" onclick="openWhatsApp()">Click Here to Chat!</button>
+    </div>
+
+    <script>
+        function openWhatsApp() {
+            let phone = "8081778870";  // Replace with the actual WhatsApp number
+            let message = encodeURIComponent("Hey Kriti! 😜 Fuck You?");
+            window.location.href = `https://wa.me/${phone}?text=${message}`;
+        }
+    </script>
+
+</body>
+</html>
