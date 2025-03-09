@@ -115,5 +115,171 @@
 <footer style="text-align: center; padding: 10px; background-color: #f1f1f1; font-size: 16px;">
     Made with ❤️ by <strong>Rao Sahab🗣️</strong>
 </footer>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - Single Player</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #1e1e2e;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 20px;
+            font-size: 2rem;
+            color: #ffcc00;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 8px;
+            background-color: #444;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            background-color: #222;
+            border: 3px solid #ffcc00;
+            border-radius: 10px;
+            color: white;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .cell:hover {
+            background-color: #ffcc00;
+            color: black;
+        }
+        .status {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #00ffcc;
+        }
+        .reset-btn {
+            margin-top: 15px;
+            padding: 12px 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            background-color: #ff5733;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(255, 87, 51, 0.5);
+        }
+        .reset-btn:hover {
+            background-color: #e74c3c;
+        }
+        .glow {
+            animation: glowEffect 0.5s ease-in-out infinite alternate;
+        }
+        @keyframes glowEffect {
+            from { text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00; }
+            to { text-shadow: 0 0 20px #ff5733, 0 0 30px #ff5733; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="glow">✨ Tic Tac Toe ✨</h1>
+    <div class="container">
+        <div class="board" id="board">
+            <div class="cell" onclick="makeMove(0)"></div>
+            <div class="cell" onclick="makeMove(1)"></div>
+            <div class="cell" onclick="makeMove(2)"></div>
+            <div class="cell" onclick="makeMove(3)"></div>
+            <div class="cell" onclick="makeMove(4)"></div>
+            <div class="cell" onclick="makeMove(5)"></div>
+            <div class="cell" onclick="makeMove(6)"></div>
+            <div class="cell" onclick="makeMove(7)"></div>
+            <div class="cell" onclick="makeMove(8)"></div>
+        </div>
+        <div class="status" id="status">Your Turn (X)</div>
+        <button class="reset-btn" onclick="resetGame()">🔄 Restart</button>
+    </div>
+
+    <script>
+        let board = ["", "", "", "", "", "", "", "", ""];
+        let gameActive = true;
+
+        function makeMove(index) {
+            if (board[index] === "" && gameActive) {
+                board[index] = "X";
+                document.getElementsByClassName("cell")[index].innerText = "X";
+                document.getElementsByClassName("cell")[index].style.color = "#00ffcc";
+                checkWinner();
+                if (gameActive) {
+                    setTimeout(AIMove, 500); // AI move after a delay
+                }
+            }
+        }
+
+        function AIMove() {
+            let emptyCells = board.map((val, idx) => (val === "" ? idx : null)).filter(val => val !== null);
+            if (emptyCells.length > 0) {
+                let aiChoice = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+                board[aiChoice] = "O";
+                document.getElementsByClassName("cell")[aiChoice].innerText = "O";
+                document.getElementsByClassName("cell")[aiChoice].style.color = "#ffcc00";
+                checkWinner();
+            }
+        }
+
+        function checkWinner() {
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8],  // Rows
+                [0, 3, 6], [1, 4, 7], [2, 5, 8],  // Columns
+                [0, 4, 8], [2, 4, 6]              // Diagonals
+            ];
+
+            for (let pattern of winPatterns) {
+                const [a, b, c] = pattern;
+                if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                    document.getElementById("status").innerText = `🎉 Player ${board[a]} Wins!`;
+                    gameActive = false;
+                    return;
+                }
+            }
+
+            if (!board.includes("")) {
+                document.getElementById("status").innerText = "🤝 It's a Draw!";
+                gameActive = false;
+            } else {
+                document.getElementById("status").innerText = gameActive ? (board.includes("O") ? "Your Turn (X)" : "AI's Turn (O)") : "";
+            }
+        }
+
+        function resetGame() {
+            board = ["", "", "", "", "", "", "", "", ""];
+            gameActive = true;
+            document.getElementById("status").innerText = "Your Turn (X)";
+            document.querySelectorAll(".cell").forEach(cell => {
+                cell.innerText = "";
+                cell.style.color = "white";
+            });
+        }
+    </script>
+
+</body>
+</html>
 </body>
 </html>
